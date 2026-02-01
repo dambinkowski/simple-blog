@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookie Blog</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+    <h1>Home Page - Author</h1>
+    </div>
+
+    <div class="container text-center">
+      <h2><%=blog_title%></h2>
+      <p><%=blog_subtitle%></p>
+      <p></p>
+      <p><i>By: <%=author_name%></i></p>
+      <a href="/author/settings" class="btn  border-dark-subtle shadow">Settings</a>
+    </div>
+
+    <div class="container">
+    <form action="/author/home" method="POST">
+      <input type="text" name="task" value="new-article" hidden />
+      <input type="Submit" value="Create new article" class="btn  border-dark-subtle shadow"/>
+    </form>
+    </div>
+   <br>
+   <div class="container">
+    <h3>Drafts:</h3>
+    <table class="table table-dark">
+      <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Subtitle</th>
+        <th scope="col">Created</th>
+        <th scope="col">Last modified</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+        <th scope="col">Publish</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% for(let i = 0; i < draftArticles.length; i++){%>
+      <tr>
+        <td><%=draftArticles[i].title%></td>
+        <td><%=draftArticles[i].subtitle%></td>
+        <td><%=draftArticles[i].date_creation%></td>
+        <td><%=draftArticles[i].date_modification%></td>
+        <td>
+          <form action="/author/article" method="GET">
+            <input
+              type="number"
+              name="id"
+              value="<%=draftArticles[i].article_id%>"
+              hidden
+            />
+            <button class="btn btn-light" type="Submit">Edit</button>
+          </form>
+        </td>
+        <td>
+          <form action="/author/home" method="POST">
+            <input type="text" name="task" value="delete" hidden />
+            <input
+              type="number"
+              name="id"
+              value="<%=draftArticles[i].article_id%>"
+              hidden
+            />
+            <button class="btn btn-light" type="Submit">Delete</button>
+          </form>
+        </td>
+        <td>
+          <form action="/author/home" method="POST">
+            <input type="text" name="task" value="publish" hidden />
+            <input
+              type="number"
+              name="id"
+              value="<%=draftArticles[i].article_id%>"
+              hidden
+            />
+            <button class="btn btn-light" type="Submit">Publish</button>
+          </form>
+        </td>
+      </tr>
+      <%}%>
+      </tbody>
+    </table>
+
+    <h3>Published:</h3>
+    <table class="table table-dark">
+      <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Subtitle</th>
+        <th scope="col">Created</th>
+        <th scope="col">Last modified</th>
+        <th scope="col">Published on</th>
+        <th scope="col">Likes</th>
+        <th scope="col">Delete</th>
+        <th scope="col">Share</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% for(let i = 0; i < publishedArticles.length; i++){%>
+      <tr>
+        <td><%=publishedArticles[i].title%></td>
+        <td><%=publishedArticles[i].subtitle%></td>
+        <td><%=publishedArticles[i].date_creation%></td>
+        <td><%=publishedArticles[i].date_modification%></td>
+        <td><%=publishedArticles[i].date_publication%></td>
+        <td><%=publishedArticles[i].likes%></td>
+        <td>
+          <form action="/author/home" method="POST">
+            <input type="text" name="task" value="delete" hidden />
+            <input
+              type="number"
+              name="id"
+              value="<%=publishedArticles[i].article_id%>"
+              hidden
+            />
+            <button class="btn btn-light" type="Submit">Delete</button>
+          </form>
+        </td>
+        <td>
+          <button
+          class="btn btn-light"
+            type="button"
+            onclick="alert('http://localhost:3000/reader/article?id=<%=publishedArticles[i].article_id%>')"
+          >
+            Share
+          </button>
+        </td>
+      </tr>
+      <%}%>
+    </table>
+    </tbody>
+    </div>
+
+    <script src="css/bootstrap-5.3.0-alpha1-dist/js/bootstrap.min.js"></script>
+  </body>
+</html>

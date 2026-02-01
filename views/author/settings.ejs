@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookie Blog</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Settings Page</h1>
+    </div>
+
+    <div class="container text-center">
+      <h2><%=blog_title%></h2>
+      <p><%=blog_subtitle%></p>
+      <p></p>
+      <p><i>By: <%=author_name%></i></p>
+    </div>
+
+    <div class="container">
+      <form method="POST" action="/author/settings">
+        <label for="author_name" class="form-label"> Authors name:</label><br />
+        <input
+          type="text"
+          name="author_name"
+          value="<%=author_name%>"
+          class="form-control"
+        />
+        <br /><br />
+        <label for="blog_title" class="form-label">Blog title:</label><br />
+        <input
+          type="text"
+          name="blog_title"
+          value="<%=blog_title%>"
+          class="form-control"
+        />
+        <br /><br />
+        <label for="blog_subtitile" class="form-label">Blog subtitile:</label
+        ><br />
+        <input
+          type="text"
+          name="blog_subtitle"
+          value="<%=blog_subtitle%>"
+          class="form-control"
+        /><br />
+        <br /><br />
+        <button type="submit" class="btn btn-secondary">Save Changes</button>
+      </form>
+    </div>
+
+    <div class="container text-center">
+      <br />
+      <button
+        onclick="location.href='/author/home';"
+        class="btn border-dark-subtle shadow"
+      >
+        Go Back Home
+      </button>
+    </div>
+
+    <script src="css/bootstrap-5.3.0-alpha1-dist/js/bootstrap.min.js"></script>
+  </body>
+</html>

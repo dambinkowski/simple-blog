@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookie Blog</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+    <h1>Edit Page</h1>
+    </div>
+
+    <div class="container text-center">
+      <h2><%=blog_title%></h2>
+      <p><%=blog_subtitle%></p>
+      <p></p>
+      <p><i>By: <%=author_name%></i></p>
+    </div>
+    <div class="container text-right">
+    <p><i>Date of creation:</i> <%=date_creation%></p>
+    <p><i>Date of modification:</i> <%=date_modification%></p>
+        </div>
+    <div class="container">
+    <form method="POST" action="/author/article">
+        <input type="number" name="article_id" value="<%=article_id%>" hidden>
+        
+        <label for="title" class="form-label">Title: </label><br>
+        <input name="title" type="text" value="<%=title%>" class="form-control" required>
+        <br><br>
+        <label for="subtitle" class="form-label">Subtitle: </label><br>
+        <input name="subtitle" type="text" value="<%=subtitle%>" class="form-control" required>
+        <br><br>
+        <label for="content" class="form-label">Content: </label><br>
+        <textarea name="content" class="form-control" required><%=content%></textarea>
+        <br>
+        <button type="submit" class="btn btn-secondary">Save Changes</button>
+    </form>
+    </div>
+
+    <br>
+    <div class="container text-center">
+    <br>
+    <button onclick="location.href='/author/home';" class="btn  border-dark-subtle shadow"> Go Back Home</button>
+    </div>
+
+
+
+      <script src="css/bootstrap-5.3.0-alpha1-dist/js/bootstrap.min.js"></script>
+</body>
+</html>

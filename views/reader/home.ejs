@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookie Blog</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Home Page - Reader</h1>
+    </div>
+
+    <div class="container text-center">
+      <h2><%=blog_title%></h2>
+      <p><%=blog_subtitle%></p>
+      <p></p>
+      <p><i>By: <%=author_name%></i></p>
+    </div>
+
+    <div class="container">
+      <h3>Articles</h3>
+      <table class="table table-dark">
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Subtitle</th>
+          <th scope="col">Date of publication</th>
+          <th scope="col">Read</th>
+        </tr>
+        <% for(let i = 0; i < publishedArticles.length; i++){%>
+        <tr>
+          <td><%=publishedArticles[i].title%></td>
+          <td><%=publishedArticles[i].subtitle%></td>
+          <td><%=publishedArticles[i].date_publication%></td>
+          <td>
+            <form action="/reader/article" method="GET">
+              <input
+                type="number"
+                name="id"
+                value="<%=publishedArticles[i].article_id%>"
+                hidden
+              />
+              <button class="btn btn-light" type="Submit">Read</button>
+            </form>
+          </td>
+        </tr>
+        <%}%>
+      </table>
+    </div>
+
+    <script src="css/bootstrap-5.3.0-alpha1-dist/js/bootstrap.min.js"></script>
+  </body>
+</html>

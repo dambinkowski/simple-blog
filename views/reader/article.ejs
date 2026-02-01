@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookie Blog</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="css/bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Article Page - Reader</h1>
+    </div>
+
+    <div class="container text-center">
+      <h2><%=blog_title%></h2>
+      <p><%=blog_subtitle%></p>
+      <p></p>
+      <p><i>By: <%=author_name%></i></p>
+    </div>
+
+    <div class="container text-right">
+      <p><i>Date of publication:</i> <%=date_publication%></p>
+    </div>
+
+    <div class="container">
+      <p><strong><%=title%></strong></p>
+      <p><%=subtitle%></p>
+    </div>
+    <div class="container bg-body-secondary">
+      <p><%=content%></p>
+    </div>
+
+    <div class="container text-right">
+      <div class="row">
+        <div class="col text-center">
+          <form action="/reader/article" method="POST">
+            <input type="text" name="task" value="add_coment" hidden />
+            <input
+              type="number"
+              name="article_id"
+              value="<%=article_id%>"
+              hidden
+            />
+            <textarea name="content" class="form-control" required></textarea>
+            <button type="submit" class="btn btn-secondary">Comment</button>
+          </form>
+        </div>
+        <div class="col text-center">
+          <form action="/reader/article" method="POST">
+            <input type="text" name="task" value="add_like" hidden />
+            <input
+              type="number"
+              name="article_id"
+              value="<%=article_id%>"
+              hidden
+            />
+            <input type="number" name="likes" value="<%=likes%>" hidden />
+            <input
+              class="btn btn-primary"
+              type="Submit"
+              value="Like <%=likes%>"
+            />
+          </form>
+        </div>
+
+        <div class="col text-center">
+          <button
+            onclick="location.href='/reader/home';"
+            class="btn border-dark-subtle shadow"
+          >
+            Go Back Home
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <h4>Comments:</h4>
+    </div>
+
+    <div class="container">
+      <div class="row row-cols-1 row-cols-md-5 g-4">
+        <% for(let i = 0; i < comments.length; i++){%>
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <p class="card-text"><%=comments[i].content%></p>
+              <p class="card-text">
+                <small class="text-muted"
+                  ><i><%=comments[i].date_comment%></i></small
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+        <%}%>
+      </div>
+    </div>
+    <br />
+    <div class="col text-center">
+      <button
+        onclick="location.href='/reader/home';"
+        class="btn border-dark-subtle shadow"
+      >
+        Go Back Home
+      </button>
+    </div>
+    <br />
+    <script src="css/bootstrap-5.3.0-alpha1-dist/js/bootstrap.min.js"></script>
+  </body>
+</html>
